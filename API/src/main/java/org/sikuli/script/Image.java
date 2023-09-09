@@ -687,7 +687,12 @@ public class Image extends Element {
 
   public static boolean isValidImageFilename(String fname) {
     String validEndings = ".png.jpg.jpeg";
-    String ending = FilenameUtils.getExtension(fname);
+    String ending = "";
+    try {
+      FilenameUtils.getExtension(fname);
+    } catch(IllegalArgumentException e) {
+      e.printStackTrace();
+    }
     return !ending.isEmpty() && validEndings.contains(ending.toLowerCase());
   }
 
